@@ -10,6 +10,11 @@ const markUp = itemsTemplate(recipies).trim();
 
 menu.insertAdjacentHTML('beforeend', markUp);
 
+if (localStorage.getItem('key')) {
+  body.classList.add(localStorage.getItem('key'));
+  themeSwitchToggle.checked = true;
+}
+
 themeSwitchToggle.addEventListener('change', () => {
   ChangeTheme();
 });
@@ -19,8 +24,10 @@ function ChangeTheme() {
   if (!themeSwitchToggle.checked) {
     body.classList.remove('dark-theme');
     body.classList.add('light-theme');
+    localStorage.setItem('key', 'light-theme');
   } else {
     body.classList.remove('light-theme');
     body.classList.add('dark-theme');
+    localStorage.setItem('key', 'dark-theme');
   }
 }
